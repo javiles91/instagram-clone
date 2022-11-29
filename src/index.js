@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App.js";
+import FirebaseContext from "./context/firebase";
+import { firebase, FieldValue } from "./lib/firebase";
+import "./styles/app.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <FirebaseContext.Provider value={{ firebase, FieldValue }}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </FirebaseContext.Provider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// client side rendering app: react (cra)
+// -> databaase whish is Firebase
+// -> react-loading-skeleton
+
+// architecture
+// scr
+// -> components,
+// -> constants,
+// -> context,
+// -> helpers,
+// -> hooks
+// -> lib (firebase is going to live in here),
+// -> services (firebase functions in here)
+// -> styles (talwind's folder (app/tailwind))
